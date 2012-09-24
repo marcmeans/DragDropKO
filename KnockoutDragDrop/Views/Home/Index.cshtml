@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "KO Drag Drop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>Seating Assignments</div>
+<div class="note">Rules: no more than 4 students per table. Must have at least one student of each gender at a full table.</div>
+<div id="main" data-bind="sortable: { data: tables, allowDrop: $root.isTable }">
+    <div class="table">
+		<span class="small" data-bind="text: name"></span>&nbsp;
+        <span class="small prio" data-bind="text: priority"></span>
+        <div class="seats" data-bind="sortable: { data: students, allowDrop: $root.isTableAvailable }">
+            <div class="student" data-bind="attr: { id: id }, css: { girl: gender() == 'female' }">
+                <span data-bind="text: name"></span>
+                <span style="float: right; padding: 1px; cursor: pointer;" data-bind="click: $root.removeStudent">X</span>
+            </div>
+
+        </div>
+        <div class="count" data-bind="text: students().length + '/' + $root.maximumStudents, css: { ready: students().length < $root.maximumStudents }"></div>
+    </div>
+</div>
+
+<div id="extra" data-bind="with: availableStudents">
+    <div data-bind="text: name"></div>
+    <div class="new" data-bind="foreach: students">
+        <div class="student" data-bind="draggable: { data: $data }, attr: { id: id}, text: name, css: { girl: gender() == 'female' }">
+        </div>
+    </div>
+</div>
+
+<div id="message" data-bind="flash: lastAction"></div>
+<div id="error" data-bind="flash: lastError"></div>
+
+@*<div id="master">
+    <div>Master List</div>
+    <table>
+        <tr>
+            <th></th>
+            <th>Seat One</th>
+            <th>Seat Two</th>
+            <th>Seat Three</th>
+            <th>Seat Four</th>
+        </tr>
+        <tbody data-bind="foreach: tables">
+            <tr>
+                <th data-bind="text: name"></th>
+                <!-- ko foreach: students -->
+                <td data-bind="text: name"></td>
+                <!-- /ko -->
+            </tr>
+        </tbody>
+        <tr data-bind="with: availableStudents">
+            <th>Available</th>
+            <!-- ko foreach: students -->
+            <td data-bind="text: name"></td>
+            <!-- /ko -->
+        </tr>
+    </table>
+</div>
+<br />
+<br />
+<div id="listotabs">
+    <div id="test" data-bind="foreach: tables">
+        <div data-bind="text: name"></div>
+        <table>
+            <tr>
+                <th>Priority</th>
+                <th>Name</th>
+                <th>Gender</th>
+            </tr>
+            <tbody data-bind="sortable: { data: students, allowDrop: $root.isTableFull }">
+                <tr>
+                    <td data-bind="text: priority"></td>
+                    <td data-bind="text: name"></td>
+                    <td data-bind="text: gender"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
+</div>*@
+@section scripts
+{
+    <script src="~/js/SeatingChartModel.js"></script>
+    <script>
+        var incoming = @Html.Raw(ViewBag.Model);
+        var vm = new SeatingChartModel(incoming);
+
+        ko.bindingHandlers.sortable.beforeMove = vm.verifyAssignments;
+        ko.bindingHandlers.sortable.afterMove = vm.updateLastAction;
+
+        ko.applyBindings(vm);
+
+    </script>
+}
