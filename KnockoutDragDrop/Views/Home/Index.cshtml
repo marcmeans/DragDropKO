@@ -31,7 +31,7 @@
 <div id="message" data-bind="flash: lastAction"></div>
 <div id="error" data-bind="flash: lastError"></div>
 
-@*<div id="master">
+<div id="master">
     <div>Master List</div>
     <table>
         <tr>
@@ -78,18 +78,16 @@
         </table>
         <br />
     </div>
-</div>*@
+</div>
 @section scripts
 {
     <script src="~/js/SeatingChartModel.js"></script>
     <script>
-        var incoming = @Html.Raw(ViewBag.Model);
-        var vm = new SeatingChartModel(incoming);
+        var vm = new SeatingChartModel(@Html.Raw(ViewBag.Model));
 
         ko.bindingHandlers.sortable.beforeMove = vm.verifyAssignments;
         ko.bindingHandlers.sortable.afterMove = vm.updateLastAction;
 
         ko.applyBindings(vm);
-
     </script>
 }

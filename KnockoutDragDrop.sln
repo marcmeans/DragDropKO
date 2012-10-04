@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnockoutDragDrop", "KnockoutDragDrop\KnockoutDragDrop.csproj", "{F86D63CF-D8EA-4E2F-9C0B-7458CCE2DA21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnockoutDragDropTests", "KnockoutDragDropTests\KnockoutDragDropTests.csproj", "{9B1B544E-5F29-4BDB-AA4C-3BA98DE3707E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{27DA5669-C508-4C94-88D7-17288A36B46E}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -22,10 +20,6 @@ Global
 		{F86D63CF-D8EA-4E2F-9C0B-7458CCE2DA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F86D63CF-D8EA-4E2F-9C0B-7458CCE2DA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F86D63CF-D8EA-4E2F-9C0B-7458CCE2DA21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B1B544E-5F29-4BDB-AA4C-3BA98DE3707E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B1B544E-5F29-4BDB-AA4C-3BA98DE3707E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B1B544E-5F29-4BDB-AA4C-3BA98DE3707E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B1B544E-5F29-4BDB-AA4C-3BA98DE3707E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
