@@ -83,11 +83,13 @@
 {
     <script src="~/js/SeatingChartModel.js"></script>
     <script>
+        
         var vm = new SeatingChartModel(@Html.Raw(ViewBag.Model));
 
         ko.bindingHandlers.sortable.beforeMove = vm.verifyAssignments;
         ko.bindingHandlers.sortable.afterMove = vm.updateLastAction;
 
         ko.applyBindings(vm);
+        
     </script>
 }
