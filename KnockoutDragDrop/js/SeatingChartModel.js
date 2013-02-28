@@ -1,23 +1,4 @@
-﻿//add animation for messages appearing and fading away
-ko.bindingHandlers.flash = {
-    init: function (element) {
-        $(element).hide();
-    },
-    update: function (element, valueAccessor) {
-        var value = ko.utils.unwrapObservable(valueAccessor());
-        if (value) {
-            $(element).stop().hide().text(value).fadeIn(function () {
-                clearTimeout($(element).data("timeout"));
-                $(element).data("timeout", setTimeout(function () {
-                    $(element).fadeOut();
-                    valueAccessor()(null);
-                }, 3000));
-            });
-        }
-    },
-    timeout: null
-};
-
+﻿
 var SeatingChartModel = function (incomingModel) {
     var self = this;
     this.tables = ko.mapping.fromJS(incomingModel.tables);
@@ -148,4 +129,24 @@ var mappingOptions = {
             return result;
         }
     }
+};
+
+//add animation for messages appearing and fading away
+ko.bindingHandlers.flash = {
+    init: function (element) {
+        $(element).hide();
+    },
+    update: function (element, valueAccessor) {
+        var value = ko.utils.unwrapObservable(valueAccessor());
+        if (value) {
+            $(element).stop().hide().text(value).fadeIn(function () {
+                clearTimeout($(element).data("timeout"));
+                $(element).data("timeout", setTimeout(function () {
+                    $(element).fadeOut();
+                    valueAccessor()(null);
+                }, 3000));
+            });
+        }
+    },
+    timeout: null
 };
